@@ -1,0 +1,67 @@
+/* ตั้งค่าพื้นฐาน */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* พื้นหลังเว็บไซต์ */
+body {
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    color: #333;
+    min-height: 100vh;
+    padding: 30px;
+}
+
+/* หัวข้อ */
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #888;
+}
+
+/* กล่องเนื้อหา */
+.container {
+    background: white;
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* ปุ่ม */
+button {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* เอฟเฟกต์เมื่อเอาเมาส์ชี้ */
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px #ff758c;
+}
+
+/* รูปภาพ */
+img {
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+/* ลิงก์ */
+a {
+    color: #ff69b4;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #a18cd1;
+}
