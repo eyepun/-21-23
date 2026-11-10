@@ -1,0 +1,309 @@
+from pathlib import Path
+
+import shutil, zipfile
+
+base = Path("/mnt/data/portfolio_github")
+
+assets = base / "assets"
+
+assets.mkdir(parents=True, exist_ok=True)
+
+# The two photos supplied earlier in the conversation
+
+photo1 = Path("/mnt/data/B9C80DDD-2968-4D63-8E45-6B1BAB77FB11.jpeg")
+
+photo2 = Path("/mnt/data/F2679F4F-264D-4857-8853-D11ABEC6F403.jpeg")
+
+if photo1.exists():
+
+    shutil.copy2(photo1, assets / "chutiwat.jpg")
+
+if photo2.exists():
+
+    shutil.copy2(photo2, assets / "pongkhun.jpg")
+
+html = r'''<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="แฟ้มสะสมผลงานเพื่อสมัครเข้าศึกษาต่อ สาขาสาธารณสุข มหาวิทยาลัยทักษิณ">
+
+<title>Portfolio | ชุติวัต พยาบาล</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{--navy:#173b59;--teal:#268b88;--mint:#e8f5f2;--gold:#d8b66a;--ink:#263746;--muted:#687987;--paper:#fff;--bg:#f3f7f8}
+
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--ink);line-height:1.8}
+
+a{color:inherit}
+
+header{position:sticky;top:0;z-index:10;background:rgba(23,59,89,.97);color:#fff;padding:13px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;box-shadow:0 3px 15px #102b4930}
+
+.brand{font:600 22px 'Kanit',sans-serif;letter-spacing:.5px}.brand span{color:#8ce0d2}
+
+nav{display:flex;gap:17px;flex-wrap:wrap}nav a{text-decoration:none;font-size:14px;color:#fff}nav a:hover{color:#8ce0d2}
+
+.hero{min-height:520px;padding:85px 7%;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(130deg,#153651ee,#258b88e8),radial-gradient(circle at top right,#fff5,transparent 40%)}
+
+.hero .eyebrow{letter-spacing:4px;color:#b9eee4;font:500 14px 'Kanit'}
+
+.hero h1{font:600 clamp(34px,6vw,60px) 'Kanit';margin:10px 0}
+
+.hero h2{font:400 clamp(19px,3vw,27px) 'Kanit';color:#f4dfaa}
+
+.hero p{max-width:760px;margin:15px auto;color:#eaf4f5}
+
+.button{display:inline-block;margin-top:20px;padding:11px 27px;border-radius:30px;background:var(--gold);color:#173b59;text-decoration:none;font-weight:700}
+
+.wrap{width:min(1100px,92%);margin:auto;padding:70px 0}
+
+.section-title{text-align:center;margin-bottom:35px}
+
+.section-title small{color:var(--teal);font:500 13px 'Kanit';letter-spacing:2px}
+
+.section-title h2{font:600 31px 'Kanit';color:var(--navy)}
+
+.section-title:after{content:"";display:block;width:65px;height:3px;background:var(--gold);margin:12px auto}
+
+.panel{background:var(--paper);border-radius:18px;padding:28px;box-shadow:0 8px 28px #193d5510}
+
+.profile-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:center}
+
+.portrait{width:100%;max-width:300px;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;border-radius:18px;border:7px solid var(--mint);display:block;margin:auto}
+
+.profile-text h3{font:600 27px 'Kanit';color:var(--navy)}
+
+.sub{color:var(--teal);font-weight:600;margin-bottom:14px}
+
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+
+.info{background:#f4f8f8;border-radius:10px;padding:12px 15px}.info b{display:block;color:var(--teal);font-size:13px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+
+.stat{background:var(--navy);color:#fff;text-align:center;padding:20px;border-radius:14px}
+
+.stat strong{display:block;font:600 28px 'Kanit';color:#f1d58e}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+h3.card-title{font:500 20px 'Kanit';color:var(--teal);margin-bottom:10px}
+
+.subjects{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+.subject{background:#f4f8f8;border-radius:9px;padding:10px 12px;font-size:14px}
+
+.subject b{color:var(--navy)}
+
+.essay{font-size:16px;text-align:justify;white-space:normal}
+
+.essay p{margin-bottom:14px}
+
+.timeline{border-left:3px solid #a8d9d1;margin-left:10px;padding-left:24px}
+
+.timeline-item{position:relative;margin:0 0 24px}
+
+.timeline-item:before{content:"";position:absolute;left:-32px;top:8px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:3px solid #fff;box-shadow:0 0 0 2px var(--teal)}
+
+.timeline-item h3{font:500 19px 'Kanit';color:var(--navy)}
+
+.meta{font-size:13px;color:var(--teal);font-weight:600}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+.card{background:#fff;border-radius:15px;padding:22px;border-top:4px solid var(--teal);box-shadow:0 7px 24px #193d550c}
+
+.card h3{font:500 19px 'Kanit';color:var(--navy);margin-bottom:5px}
+
+.card p{font-size:14px;color:var(--muted)}
+
+.card .date{font-size:13px;color:var(--teal);font-weight:600;margin-bottom:8px}
+
+.tag{display:inline-block;background:var(--mint);color:#247a76;padding:3px 10px;border-radius:20px;font-size:12px;margin:5px 4px 0 0}
+
+.note{font-size:13px;color:var(--muted);margin-top:15px}
+
+footer{background:var(--navy);color:#fff;text-align:center;padding:35px 15px}
+
+footer strong{font:600 25px 'Kanit';color:#f1d58e}
+
+@media(max-width:760px){header{justify-content:center}nav{justify-content:center;gap:10px}.profile-grid,.two-col{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.info-grid,.subjects{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.wrap{padding:48px 0}.hero{min-height:430px;padding:65px 6%}}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="brand">MY <span>PORTFOLIO</span></div>
+
+  <nav>
+
+    <a href="#home">หน้าแรก</a><a href="#profile">ข้อมูลผู้สมัคร</a><a href="#education">การศึกษา</a>
+
+    <a href="#essay">เหตุผลในการสมัคร</a><a href="#awards">รางวัล</a><a href="#activities">กิจกรรม</a>
+
+  </nav>
+
+</header>
+
+<section class="hero" id="home">
+
+  <div>
+
+    <div class="eyebrow">TCASFOLIO • PORTFOLIO 2570</div>
+
+    <h1>แฟ้มสะสมผลงาน</h1>
+
+    <h2>นายชุติวัต พยาบาล</h2>
+
+    <p>สมัครเข้าศึกษาต่อ มหาวิทยาลัยทักษิณ<br>คณะวิทยาการสุขภาพและการกีฬา • สาขาสาธารณสุข</p>
+
+    <a class="button" href="#profile">เข้าสู่แฟ้มสะสมผลงาน</a>
+
+  </div>
+
+</section>
+
+<main>
+
+<section class="wrap" id="profile">
+
+  <div class="section-title"><small>SECTION 01</small><h2>ข้อมูลผู้สมัคร</h2></div>
+
+  <div class="panel profile-grid">
+
+    <img class="portrait" src="assets/punyanut.jpg" alt="รูปผู้สมัคร นางสาวปุณยนุช ทองสัมฤทธิ์" onerror="this.style.display='none'">
+
+    <div class="profile-text">
+
+      <h3>นายชุติวัต พยาบาล</h3>
+<p>ผู้สมัครเข้าศึกษาต่อระดับปริญญาตรี สาขาสาธารณสุข มหาวิทยาลัยทักษิณ วิทยาเขตพัทลุง</p>
+ <div class="info-grid">
+<div class="info"><b>วันเดือนปีเกิด</b>19 สิงหาคม 2551</div>
+ <div class="info"><b>เพศ</b>ชาย</div>
+<div class="info"><b>โรงเรียน</b>ทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</div>
+<div class="info"><b>จังหวัด</b>นครศรีธรรมราช</div>
+<div class="info"><b>ปีการศึกษา</b>2569</div>
+<div class="info"><b>หลักสูตร</b>หลักสูตรแกนกลาง (สามัญ)</div>
+</div>
+<p class="note">ข้อมูลเลขประจำตัวประชาชน เบอร์โทรศัพท์ อีเมล และที่อยู่ส่วนบุคคลไม่ได้แสดงบนเว็บไซต์สาธารณะ เพื่อความเป็นส่วนตัว</p>
+</div>
+</div>
+<div class="stats">
+<div class="stat"><strong>3.55</strong>เกรดเฉลี่ยสะสม (GPAX)</div>
+<div class="stat"><strong>วิทย์–คณิต</strong>แผนการเรียน</div>
+<div class="stat"><strong>2570</strong>ปีแฟ้มสะสมผลงาน</div>
+</div>
+</section>
+<section class="wrap" id="education">
+<div class="section-title"><small>SECTION 02</small><h2>ประวัติการศึกษา</h2></div>
+<div class="panel">
+<h3 class="card-title">โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</h3>
+<p>จังหวัดนครศรีธรรมราช • หลักสูตรแกนกลาง (สามัญ) • ปีการศึกษา 2569</p>
+<div class="subjects" style="margin-top:18px">
+<div class="subject">ภาษาไทย <b>GPA 3.75</b> • 4.00 หน่วยกิต</div>
+<div class="subject">คณิตศาสตร์ <b>GPA 3.79</b> • 11.00 หน่วยกิต</div>
+<div class="subject">วิทยาศาสตร์ <b>GPA 3.18</b> • 23.50 หน่วยกิต</div>
+<div class="subject">สังคมศึกษา ศาสนา และวัฒนธรรม <b>GPA 3.68</b> • 9.50 หน่วยกิต</div>
+<div class="subject">สุขศึกษาและพลศึกษา <b>GPA 4.00</b> • 2.00 หน่วยกิต</div>
+<div class="subject">ศิลปะ <b>GPA 4.00</b> • 2.00 หน่วยกิต</div>
+<div class="subject">การงานอาชีพและเทคโนโลยี <b>GPA 4.00</b> • 1.00 หน่วยกิต</div>
+<div class="subject">ภาษาต่างประเทศ <b>GPA 3.68</b> • 8.00 หน่วยกิต</div>
+</div>
+<p class="note">เอกสารหลักฐานการศึกษา: ใบ ปพ.1 ด้านหน้าและด้านหลัง (ตามเอกสารต้นฉบับ หน้า 2–3)</p>
+</div>
+</section>
+<section class="wrap" id="essay">
+<div class="section-title"><small>SECTION 03</small><h2>เรียงความ / เหตุผลในการสมัคร</h2></div>
+<div class="panel essay">
+<p>“สุขภาพที่ดีคือพื้นฐานของชีวิต และการป้องกันย่อมยั่งยืนกว่าการรักษา” ดิฉัน นางสาวปุณยนุช ทองสัมฤทธิ์ ชั้นมัธยมศึกษาปีที่ 6 ของโรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก ในแผนการเรียนวิทยาศาสตร์-คณิตศาสตร์ มีความมุ่งมั่นตั้งใจที่จะศึกษาต่อในคณะวิทยาการสุขภาพและการกีฬา สาขาสาธารณสุข มหาวิทยาลัยทักษิณ วิทยาเขตพัทลุง</p>
+<p>ตั้งแต่เด็กจนถึงปัจจุบัน ดิฉันเป็นคนที่ให้ความสนใจเกี่ยวกับเรื่องสุขภาพและมองเห็นความสำคัญในด้านสุขภาพ เพราะมองว่าสุขภาพเป็นสิ่งสำคัญที่ส่งผลต่อการใช้ชีวิตของทุกคน ไม่ว่าจะเป็นการดูแลตนเอง การป้องกันโรค หรือการมีความรู้ที่ถูกต้องเกี่ยวกับสุขภาพ สิ่งเหล่านี้ทำให้ดิฉันเริ่มสนใจว่างานด้านสาธารณสุขไม่ได้มีเพียงการรักษาเมื่อเจ็บป่วย แต่ยังเป็นการป้องกันและส่งเสริมให้คนในชุมชนมีสุขภาพที่ดีตั้งแต่ก่อนเกิดปัญหา</p>
+<p>ในช่วงที่เรียนระดับมัธยมศึกษาตอนปลาย ดิฉันได้มีโอกาสเข้าร่วมกิจกรรมต่าง ๆ ของโรงเรียนที่เกี่ยวข้องกับการดูแลสุขภาพ การทำงานร่วมกับผู้อื่น และการทำกิจกรรมเพื่อส่วนรวม รวมถึงการเข้าร่วมโครงการ TO BE NUMBER ONE ซึ่งทำให้ดิฉันได้เรียนรู้การทำงานเป็นทีม ความรับผิดชอบ และการมีส่วนร่วมในการประชาสัมพันธ์สิ่งที่เป็นประโยชน์ให้กับคนรอบตัว นอกจากนี้ การได้เรียนในสายวิทยาศาสตร์-คณิตศาสตร์ยังช่วยให้ดิฉันได้ฝึกคิดอย่างเป็นระบบและมีเหตุผล</p>
+<p>อีกประสบการณ์หนึ่งที่ทำให้ดิฉันสนใจด้านสาธารณสุขมากขึ้น คือการได้มีโอกาสเข้าร่วมกิจกรรมบริจาคโลหิต ทำให้ดิฉันได้เห็นความสำคัญของการดูแลสุขภาพและการช่วยเหลือผู้อื่น ประสบการณ์นี้จึงทำให้ดิฉันอยากเรียนรู้เกี่ยวกับงานสาธารณสุขอย่างจริงจัง เพื่อนำความรู้ที่ได้ไปใช้ดูแลและส่งเสริมสุขภาพของคนในชุมชนให้เกิดประโยชน์</p>
+<p>ดิฉันเลือกมหาวิทยาลัยทักษิณ เพราะต้องการเรียนในสภาพแวดล้อมที่เปิดโอกาสให้ได้เรียนรู้ทั้งภาคทฤษฎีและการนำความรู้ไปประยุกต์ใช้จริง โดยเฉพาะงานด้านสาธารณสุขที่เกี่ยวข้องกับชุมชน ดิฉันเชื่อว่าการได้เรียนรู้จากประสบการณ์จริงจะช่วยให้เข้าใจปัญหาสุขภาพของผู้คนมากขึ้น และสามารถพัฒนาทักษะที่จำเป็นต่อการทำงานในอนาคตได้</p>
+<p>หากได้รับโอกาสเข้าศึกษาในสาขาสาธารณสุข ดิฉันตั้งใจว่าจะเรียนรู้และพัฒนาตัวเองอย่างเต็มที่ ทั้งด้านวิชาการ การทำงานร่วมกับผู้อื่น และการลงมือปฏิบัติจริง ดิฉันอยากเป็นคนที่สามารถนำความรู้ด้านสาธารณสุขไปช่วยส่งเสริมสุขภาพ ป้องกันโรคและให้คำแนะนำที่ถูกต้องแก่คนในชุมชนได้ ในอนาคตดิฉันหวังว่าจะได้นำความรู้และประสบการณ์ที่ได้รับจากมหาวิทยาลัยไปประกอบอาชีพด้านสาธารณสุข และเป็นส่วนหนึ่งในการสร้างสุขภาพที่ดีให้กับคนในสังคม</p>
+<p>ดิฉันอาจจะยังมีอีกหลายสิ่งที่ต้องเรียนรู้และพัฒนา แต่ดิฉันพร้อมที่จะเรียนรู้จากทุกประสบการณ์และตั้งใจทำให้ดีที่สุด หากได้รับโอกาสเข้าศึกษาที่มหาวิทยาลัยทักษิณ ดิฉันจะใช้โอกาสนี้ในการพัฒนาตนเองให้เติบโตทั้งด้านความรู้ ความสามารถ และความรับผิดชอบ เพื่อก้าวไปสู่การเป็นบุคลากรด้านสาธารณสุขที่สามารถทำประโยชน์ให้กับผู้อื่นและสังคมได้ในอนาคต</p>
+</div>
+</section>
+<section class="wrap" id="awards">
+<div class="section-title"><small>SECTION 04</small><h2>รางวัลและเกียรติบัตร</h2></div>
+<div class="cards">
+<article class="card">
+<h3>หลักสูตรต้านทุจริต รายวิชาเพิ่มเติม การป้องกันการทุจริต</h3>
+<div class="date">3 ตุลาคม พ.ศ. 2569 • ระดับชาติ</div>
+<p>สำนักงานคณะกรรมการป้องกันและปราบปรามการทุจริตแห่งชาติ (ป.ป.ช.)</p>
+<p>ผ่านการเรียนและการทำข้อสอบตามเกณฑ์ที่กำหนด เสริมสร้างจิตสำนึกความซื่อสัตย์และจริยธรรม</p>
+<span class="tag">ผ่านการทดสอบ</span>
+</article>
+<article class="card">
+<h3>รางวัล “เด็กดีศรี ท.ฉ.ร.” ด้านคุณธรรม จริยธรรม และการบำเพ็ญประโยชน์</h3>
+<div class="date">15 มกราคม พ.ศ. 2569 • ระดับโรงเรียน/สถาบัน</div>
+<p>โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p>
+<p>ได้รับรางวัลเด็กดี สะท้อนความรับผิดชอบ มีน้ำใจ และช่วยเหลือผู้อื่น</p>
+<span class="tag">รางวัลเด็กดี</span>
+</article>
+</div>
+</section>
+<section class="wrap" id="activities">
+<div class="section-title"><small>SECTION 05</small><h2>กิจกรรมและประสบการณ์</h2></div>
+<div class="cards">
+<article class="card"><h3>เข้าร่วมบริจาคโลหิต</h3><div class="date">15 สิงหาคม พ.ศ. 2569</div><p>ศูนย์ฝึกย่อยอำเภอทุ่งใหญ่ มณฑลทหารบกที่ 41</p><p>จิตอาสาบริจาคโลหิตเพื่อช่วยเหลือผู้ป่วย เรียนรู้คุณค่าของการเสียสละและการแบ่งปัน</p></article>
+<article class="card"><h3>จิตอาสาปลูกป่าชายเลน อนุรักษ์ธรรมชาติและสิ่งแวดล้อม</h3><div class="date">2 พฤษภาคม พ.ศ. 2569</div><p>กิจกรรม “เด็กคิดดี จิตอาสา” โดยศูนย์ส่งเสริมประสานการมีส่วนร่วมและถ่ายทอดความรู้ทรัพยากรทางทะเลและชายฝั่งที่ 3</p><p>เรียนรู้ความรับผิดชอบต่อส่วนรวมและความเชื่อมโยงระหว่างสิ่งแวดล้อมกับสุขภาพชุมชน</p></article>
+<article class="card"><h3>จิตอาสาพระราชทาน “เราทำความ ดี ด้วยหัวใจ”</h3><div class="date">25 พฤศจิกายน พ.ศ. 2568</div><p>โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p><p>ได้รับหมวกพระราชทานจิตอาสา เรียนรู้การเสียสละและการช่วยเหลือผู้อื่น</p></article>
+<article class="card"><h3>สภานักเรียน</h3><div class="date">ประจำปี 2568</div><p>โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p><p>ได้รับเลือกตั้งเป็นคณะกรรมการนักเรียน ฝึกความรับผิดชอบ วินัย การรับฟัง และการแก้ไขปัญหาร่วมกับผู้อื่น</p></article>
+<article class="card"><h3>ค่ายพัฒนาศักยภาพสภานักเรียน</h3><div class="date">15–16 พฤศจิกายน พ.ศ. 2568</div><p>โรงเรียนทุ่งใหญ่เฉลิมราชอนุสรณ์ รัชมังคลาภิเษก</p><p>ฝึกการสื่อสาร การรับฟัง การเคารพความคิดเห็น และการทำงานร่วมกัน</p></article>
+<article class="card"><h3>วิทยากรร่วมอบรมค่ายคุณธรรม</h3><div class="date">23 มิถุนายน พ.ศ. 2569</div><p>โรงเรียนวัดวังหิน</p><p>ร่วมทำกิจกรรมสันทนาการและเกมกลุ่ม ฝึกการสื่อสาร การทำงานเป็นทีม และการดูแลผู้เข้าร่วม</p></article>
+<article class="card"><h3>กิจกรรมจิตอาสาเก็บขยะและดูแลพื้นที่สาธารณะ</h3><div class="date">14 ธันวาคม พ.ศ. 2568</div><p>ร่วมดูแลความสะอาดของพื้นที่ส่วนรวม เรียนรู้ความรับผิดชอบ การเสียสละ และความสำคัญของสิ่งแวดล้อมที่ปลอดภัย</p></article>
+<article class="card"><h3>อบรมด้านการเกษตร</h3><div class="date">6 ธันวาคม พ.ศ. 2568</div><p>ท่องเที่ยวเชิงเกษตร ศูนย์ขยายพันธุ์พืชที่ 4 จังหวัดนครศรีธรรมราช</p><p>เรียนรู้การดูแลพืช การจัดการพื้นที่ และการใช้ทรัพยากรอย่างเหมาะสม</p></article>
+<article class="card"><h3>เข้าร่วมค่ายคุณธรรม จริยธรรมนักเรียน</h3><div class="date">13–14 พฤษภาคม พ.ศ. 2567</div><p>วัดควนคลัง</p><p>เรียนรู้ระเบียบวินัย ความรับผิดชอบ การเคารพผู้อื่น และการอยู่ร่วมกันในสังคม</p></article>
+</div>
+</section>
+<section class="wrap">
+<div class="panel" style="text-align:center;background:var(--mint)">
+<h2 style="font:600 25px 'Kanit';color:var(--navy)">มหาวิทยาลัยทักษิณ</h2>
+<p>คณะวิทยาการสุขภาพและการกีฬา • สาธารณสุขศาสตรบัณฑิต</p>
+<p>โครงการส่งเสริมนักเรียนคุณธรรม จริยธรรม และประพฤติตนเป็นประโยชน์แก่สังคม : วิทยาเขตพัทลุง</p>
+</div>
+</section>
+</main>
+<footer><strong>THANK YOU</strong><p>ขอบพระคุณที่เข้าชมแฟ้มสะสมผลงาน</p><p>นางสาวปุณยนุช ทองสัมฤทธิ์ • PORTFOLIO 2570</p></footer>
+</body>
+</html>
+'''
+(base / "index.html").write_text(html, encoding="utf-8")
+# Include a short README explaining the photo filename and GitHub Pages setup.
+readme = """แฟ้มสะสมผลงานสำหรับ GitHub Pages
+ไฟล์หลัก: index.html
+รูปโปรไฟล์ที่ต้องเพิ่ม: assets/punyanut.jpg
+- นำรูปของนางสาวปุณยนุช ทองสัมฤทธิ์ มาใส่ในโฟลเดอร์ assets และตั้งชื่อ punyanut.jpg
+หมายเหตุ:
+- รูปสองรูปที่ส่งมาก่อนหน้านี้เป็นบุคคลที่ระบุชื่อว่า นายชุติวัต พยาบาล และนายปองคุณ ชูมณี จึงไม่ได้นำมาแสดงเป็นรูปของผู้สมัครในแฟ้มนี้ เพื่อไม่ให้ระบุตัวบุคคลผิด
+- เปิด GitHub Repository > Settings > Pages > Deploy from a branch > main > /(root) > Save
+"""
+(base / "README.txt").write_text(readme, encoding="utf-8")
+zip_path = Path("/mnt/data/portfolio_github_ready.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+for p in base.rglob("*"):
+if p.is_file():
+z.write(p, p.relative_to(base.parent))
+print("Created:", base / "index.html")
+print("ZIP:", zip_path)
+print("HTML size:", len(html), "characters")
