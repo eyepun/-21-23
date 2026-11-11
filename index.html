@@ -402,23 +402,3 @@ h1 {
 <footer><strong>THANK YOU</strong><p>ขอบพระคุณที่เข้าชมแฟ้มสะสมผลงาน</p><p>นางสาวปุณยนุช ทองสัมฤทธิ์ • PORTFOLIO 2570</p></footer>
 </body>
 </html>
-'''
-(base / "index.html").write_text(html, encoding="utf-8")
-# Include a short README explaining the photo filename and GitHub Pages setup.
-readme = """แฟ้มสะสมผลงานสำหรับ GitHub Pages
-ไฟล์หลัก: index.html
-รูปโปรไฟล์ที่ต้องเพิ่ม: assets/punyanut.jpg
-- นำรูปของนางสาวปุณยนุช ทองสัมฤทธิ์ มาใส่ในโฟลเดอร์ assets และตั้งชื่อ punyanut.jpg
-หมายเหตุ:
-- รูปสองรูปที่ส่งมาก่อนหน้านี้เป็นบุคคลที่ระบุชื่อว่า นายชุติวัต พยาบาล และนายปองคุณ ชูมณี จึงไม่ได้นำมาแสดงเป็นรูปของผู้สมัครในแฟ้มนี้ เพื่อไม่ให้ระบุตัวบุคคลผิด
-- เปิด GitHub Repository > Settings > Pages > Deploy from a branch > main > /(root) > Save
-"""
-(base / "README.txt").write_text(readme, encoding="utf-8")
-zip_path = Path("/mnt/data/portfolio_github_ready.zip")
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-for p in base.rglob("*"):
-if p.is_file():
-z.write(p, p.relative_to(base.parent))
-print("Created:", base / "index.html")
-print("ZIP:", zip_path)
-print("HTML size:", len(html), "characters")
