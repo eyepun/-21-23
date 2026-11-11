@@ -1,26 +1,4 @@
-from pathlib import Path
 
-import shutil, zipfile
-
-base = Path("/mnt/data/portfolio_github")
-
-assets = base / "assets"
-
-assets.mkdir(parents=True, exist_ok=True)
-
-# The two photos supplied earlier in the conversation
-
-photo1 = Path("/mnt/data/B9C80DDD-2968-4D63-8E45-6B1BAB77FB11.jpeg")
-
-photo2 = Path("/mnt/data/F2679F4F-264D-4857-8853-D11ABEC6F403.jpeg")
-
-if photo1.exists():
-
-    shutil.copy2(photo1, assets / "chutiwat.jpg")
-
-if photo2.exists():
-
-    shutil.copy2(photo2, assets / "pongkhun.jpg")
 
 html = r'''<!DOCTYPE html>
 
@@ -399,6 +377,6 @@ h1 {
 </div>
 </section>
 </main>
-<footer><strong>THANK YOU</strong><p>ขอบพระคุณที่เข้าชมแฟ้มสะสมผลงาน</p><p>นางสาวปุณยนุช ทองสัมฤทธิ์ • PORTFOLIO 2570</p></footer>
+<footer><strong>THANK YOU</strong><p>ขอบพระคุณที่เข้าชมแฟ้มสะสมผลงาน</p><p>นายชุติวัต พยาบาล กับ นายปแงคุณ ชูมณี • PORTFOLIO 2570</p></footer>
 </body>
 </html>
